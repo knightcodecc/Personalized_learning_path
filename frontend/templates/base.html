@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}PathForge - AI Learning Journey{% endblock %}</title>
+	
+	<!-- Styles -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	
+	<!-- Lucide Icons -->
+	<script src="https://unpkg.com/lucide@latest"></script>
+	
+	{% block extra_css %}{% endblock %}
+</head>
+<body>
+	<!-- Loading Overlay -->
+	<div id="loadingOverlay" class="loading-overlay hidden">
+		<div class="loader"></div>
+		<p>Loading...</p>
+	</div>
+	
+	<!-- Toast Notifications -->
+	<div id="toastContainer" class="toast-container"></div>
+	
+	{% block content %}{% endblock %}
+	
+	<!-- Base JavaScript -->
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	
+	{% block extra_js %}{% endblock %}
+	
+	<script>
+		// Initialize Lucide icons
+		lucide.createIcons();
+	</script>
+</body>
+</html>

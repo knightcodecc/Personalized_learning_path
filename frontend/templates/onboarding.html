@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="onboarding-page">
+	<!-- Progress Bar -->
+	<div class="onboarding-progress">
+		<div class="progress-bar">
+			<div class="progress-fill" id="progressFill"></div>
+		</div>
+		<div class="progress-text">
+			<span id="currentStep">1</span> / 4
+		</div>
+	</div>
+	
+	<!-- Step 1: Current Skills -->
+	<div class="onboarding-step active" id="step1">
+		<div class="step-content">
+			<h1>What do you already know?</h1>
+			<p>Select all the skills and technologies you're familiar with</p>
+			
+			<div class="search-box">
+				<i data-lucide="search"></i>
+				<input type="text" id="skillSearch" placeholder="Search skills..." oninput="filterSkills()">
+			</div>
+			
+			<div class="skills-categories">
+				<div class="category">
+					<h3>Programming Languages</h3>
+					<div class="skills-grid" data-category="programming">
+						<div class="skill-tag" data-skill="Python" onclick="toggleSkill(this)">
+							<span>Python</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="JavaScript" onclick="toggleSkill(this)">
+							<span>JavaScript</span>
+							<i data-sLucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Java" onclick="toggleSkill(this)">
+							<span>Java</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="C++" onclick="toggleSkill(this)">
+							<span>C++</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="C#" onclick="toggleSkill(this)">
+							<span>C#</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Ruby" onclick="toggleSkill(this)">
+							<span>Ruby</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Go" onclick="toggleSkill(this)">
+							<span>Go</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Rust" onclick="toggleSkill(this)">
+							<span>Rust</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+					</div>
+				</div>
+				
+				<div class="category">
+					<h3>Web Development</h3>
+					<div class="skills-grid" data-category="web">
+						<div class="skill-tag" data-skill="HTML" onclick="toggleSkill(this)">
+							<span>HTML</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="CSS" onclick="toggleSkill(this)">
+							<span>CSS</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="React" onclick="toggleSkill(this)">
+							<span>React</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Vue" onclick="toggleSkill(this)">
+							<span>Vue</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Angular" onclick="toggleSkill(this)">
+							<span>Angular</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Node.js" onclick="toggleSkill(this)">
+							<span>Node.js</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Express" onclick="toggleSkill(this)">
+							<span>Express</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+					</div>
+				</div>
+				
+				<div class="category">
+					<h3>Mobile Development</h3>
+					<div class="skills-grid" data-category="mobile">
+						<div class="skill-tag" data-skill="React Native" onclick="toggleSkill(this)">
+							<span>React Native</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Flutter" onclick="toggleSkill(this)">
+							<span>Flutter</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Swift" onclick="toggleSkill(this)">
+							<span>Swift</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Kotlin" onclick="toggleSkill(this)">
+							<span>Kotlin</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+					</div>
+				</div>
+				
+				<div class="category">
+					<h3>Data & Databases</h3>
+					<div class="skills-grid" data-category="data">
+						<div class="skill-tag" data-skill="SQL" onclick="toggleSkill(this)">
+							<span>SQL</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="MongoDB" onclick="toggleSkill(this)">
+							<span>MongoDB</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="PostgreSQL" onclick="toggleSkill(this)">
+							<span>PostgreSQL</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Redis" onclick="toggleSkill(this)">
+							<span>Redis</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+					</div>
+				</div>
+				
+				<div class="category">
+					<h3>Tools & Others</h3>
+					<div class="skills-grid" data-category="tools">
+						<div class="skill-tag" data-skill="Git" onclick="toggleSkill(this)">
+							<span>Git</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Docker" onclick="toggleSkill(this)">
+							<span>Docker</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="AWS" onclick="toggleSkill(this)">
+							<span>AWS</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+						<div class="skill-tag" data-skill="Linux" onclick="toggleSkill(this)">
+							<span>Linux</span>
+							<i data-lucide="check" class="check-icon"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="custom-skill-input">
+				<input type="text" id="customSkill" placeholder="Add custom skill...">
+				<button class="btn btn-secondary" onclick="addCustomSkill()">
+					<i data-lucide="plus"></i>
+					Add
+				</button>
+			</div>
+			
+			<div class="selected-skills" id="selectedSkills">
+				<h4>Selected Skills (<span id="skillCount">0</span>)</h4>
+				<div class="selected-skills-list" id="selectedSkillsList"></div>
+			</div>
+		</div>
+		
+		<div class="step-actions">
+			<button class="btn btn-secondary" disabled>Back</button>
+			<button class="btn btn-primary" onclick="nextStep()">
+				Next
+				<i data-lucide="arrow-right"></i>
+			</button>
+		</div>
+	</div>
+	
+	<!-- Step 2: Learning Goal -->
+	<div class="onboarding-step" id="step2">
+		<div class="step-content">
+			<h1>What do you want to become?</h1>
+			<p>Choose your target career path or learning goal</p>
+			
+			<div class="career-paths">
+				<div class="career-card" data-role="Frontend Developer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="layout"></i>
+					</div>
+					<h3>Frontend Developer</h3>
+					<p>Build beautiful user interfaces and web applications</p>
+					<div class="career-badge">Popular</div>
+				</div>
+				
+				<div class="career-card" data-role="Backend Developer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="server"></i>
+					</div>
+					<h3>Backend Developer</h3>
+					<p>Create server-side logic and APIs</p>
+				</div>
+				
+				<div class="career-card" data-role="Full Stack Developer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="layers"></i>
+					</div>
+					<h3>Full Stack Developer</h3>
+					<p>Master both frontend and backend development</p>
+					<div class="career-badge">Recommended</div>
+				</div>
+				
+				<div class="career-card" data-role="Mobile App Developer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="smartphone"></i>
+					</div>
+					<h3>Mobile App Developer</h3>
+					<p>Build iOS and Android applications</p>
+				</div>
+				
+				<div class="career-card" data-role="Data Scientist" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="bar-chart"></i>
+					</div>
+					<h3>Data Scientist</h3>
+					<p>Analyze data and build ML models</p>
+				</div>
+				
+				<div class="career-card" data-role="Machine Learning Engineer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="brain"></i>
+					</div>
+					<h3>ML Engineer</h3>
+					<p>Develop and deploy AI/ML systems</p>
+				</div>
+				
+				<div class="career-card" data-role="DevOps Engineer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="git-branch"></i>
+					</div>
+					<h3>DevOps Engineer</h3>
+					<p>Automate deployment and infrastructure</p>
+				</div>
+				
+				<div class="career-card" data-role="Cybersecurity Specialist" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="shield"></i>
+					</div>
+					<h3>Cybersecurity Specialist</h3>
+					<p>Protect systems and data from threats</p>
+				</div>
+				
+				<div class="career-card" data-role="Game Developer" onclick="selectCareer(this)">
+					<div class="career-icon">
+						<i data-lucide="gamepad-2"></i>
+					</div>
+					<h3>Game Developer</h3>
+					<p>Create interactive games and experiences</p>
+				</div>
+			</div>
+			
+			<div class="custom-goal">
+				<label for="customGoal">Or enter a custom learning goal:</label>
+				<input type="text" id="customGoal" placeholder="e.g., Build a SaaS product, Learn blockchain development...">
+			</div>
+		</div>
+		
+		<div class="step-actions">
+			<button class="btn btn-secondary" onclick="prevStep()">
+				<i data-lucide="arrow-left"></i>
+				Back
+			</button>
+			<button class="btn btn-primary" onclick="nextStep()">
+				Next
+				<i data-lucide="arrow-right"></i>
+			</button>
+		</div>
+	</div>
+	
+	<!-- Step 3: Learning Preferences -->
+	<div class="onboarding-step" id="step3">
+		<div class="step-content">
+			<h1>Customize your learning experience</h1>
+			<p>Help us tailor the perfect curriculum for you</p>
+			
+			<div class="preferences-form">
+				<div class="preference-group">
+					<h3>Learning Pace</h3>
+					<p class="group-description">How much time can you dedicate daily?</p>
+					
+					<div class="radio-cards">
+						<label class="radio-card">
+							<input type="radio" name="pace" value="casual" checked>
+							<div class="radio-card-content">
+								<i data-lucide="coffee"></i>
+								<h4>Casual</h4>
+								<p>1 hour/day</p>
+								<span class="duration-label">~6 months</span>
+							</div>
+						</label>
+						
+						<label class="radio-card">
+							<input type="radio" name="pace" value="moderate">
+							<div class="radio-card-content">
+								<i data-lucide="zap"></i>
+								<h4>Moderate</h4>
+								<p>2 hours/day</p>
+								<span class="duration-label">~3 months</span>
+							</div>
+						</label>
+						
+						<label class="radio-card">
+							<input type="radio" name="pace" value="intensive">
+							<div class="radio-card-content">
+								<i data-lucide="flame"></i>
+								<h4>Intensive</h4>
+								<p>3+ hours/day</p>
+								<span class="duration-label">~2 months</span>
+							</div>
+						</label>
+					</div>
+				</div>
+				
+				<div class="preference-group">
+					<h3>Preferred Content Types</h3>
+					<p class="group-description">How do you like to learn?</p>
+					
+					<div class="checkbox-cards">
+						<label class="checkbox-card">
+							<input type="checkbox" name="content" value="videos" checked>
+							<div class="checkbox-card-content">
+								<i data-lucide="video"></i>
+								<span>Video Tutorials</span>
+							</div>
+						</label>
+						
+						<label class="checkbox-card">
+							<input type="checkbox" name="content" value="articles" checked>
+							<div class="checkbox-card-content">
+								<i data-lucide="book-open"></i>
+								<span>Articles & Docs</span>
+							</div>
+						</label>
+						
+						<label class="checkbox-card">
+							<input type="checkbox" name="content" value="interactive" checked>
+							<div class="checkbox-card-content">
+								<i data-lucide="code"></i>
+								<span>Interactive Coding</span>
+							</div>
+						</label>
+						
+						<label class="checkbox-card">
+							<input type="checkbox" name="content" value="projects" checked>
+							<div class="checkbox-card-content">
+								<i data-lucide="folder"></i>
+								<span>Projects</span>
+							</div>
+						</label>
+						
+						<label class="checkbox-card">
+							<input type="checkbox" name="content" value="quizzes">
+							<div class="checkbox-card-content">
+								<i data-lucide="check-circle"></i>
+								<span>Quizzes</span>
+							</div>
+						</label>
+					</div>
+				</div>
+				
+				<div class="preference-group">
+					<h3>Target Completion</h3>
+					<p class="group-description">When do you want to complete this path?</p>
+					
+					<select id="targetCompletion" class="form-select">
+						<option value="3">3 months</option>
+						<option value="6" selected>6 months</option>
+						<option value="12">1 year</option>
+						<option value="0">Self-paced (no deadline)</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class="step-actions">
+			<button class="btn btn-secondary" onclick="prevStep()">
+				<i data-lucide="arrow-left"></i>
+				Back
+			</button>
+			<button class="btn btn-primary" onclick="nextStep()">
+				Next
+				<i data-lucide="arrow-right"></i>
+			</button>
+		</div>
+	</div>
+	
+	<!-- Step 4: Quick Assessment -->
+	<div class="onboarding-step" id="step4">
+		<div class="step-content">
+			<h1>Quick skill assessment (Optional)</h1>
+			<p>Help us gauge your current level - or skip to get started</p>
+			
+			<div class="quiz-container" id="quizContainer">
+				<!-- Quiz questions will be loaded here -->
+			</div>
+			
+			<div class="quiz-navigation">
+				<button class="btn btn-secondary" id="prevQuestionBtn" onclick="prevQuestion()" style="display:none;">
+					<i data-lucide="arrow-left"></i>
+					Previous
+				</button>
+				<span class="quiz-progress">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">5</span></span>
+				<button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()">
+					Next
+					<i data-lucide="arrow-right"></i>
+				</button>
+			</div>
+		</div>
+		
+		<div class="step-actions">
+			<button class="btn btn-secondary" onclick="prevStep()">
+				<i data-lucide="arrow-left"></i>
+				Back
+			</button>
+			<button class="btn btn-secondary" onclick="skipAssessment()">
+				Skip Assessment
+			</button>
+			<button class="btn btn-primary" onclick="generatePath()">
+				<i data-lucide="sparkles"></i>
+				Generate My Path
+			</button>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/onboarding.js') }}"></script>
+{% endblock %}
