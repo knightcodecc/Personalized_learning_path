@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "env": {
+    "SECRET_KEY": "${SECRET_KEY}"
+  }
+}
+

@@ -465,4 +465,14 @@ def dashboard_redirect():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
+# Error handlers
+@app.errorhandler(404)
+def not_found(_):
+    from flask import render_template
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return jsonify({'message': 'An unexpected error occurred'}), 500

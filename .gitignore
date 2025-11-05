@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+.env.local
+instance/
+
+# Node
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Builds
+.dist/
+dist/
+build/
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
+
