@@ -17,5 +17,8 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+if(!window.auth.requireAuth('/login')){ /* redirected */ }
+</script>
 <script src="{{ url_for('static', filename='js/learning-path.js') }}"></script>
 {% endblock %}

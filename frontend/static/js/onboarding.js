@@ -2,17 +2,17 @@
 	const token = localStorage.getItem('token');
 	const authHeader = token ? { 'Authorization': 'Bearer ' + token } : {};
 	let step = 1;
-	const totalSteps = 4;
+	const totalSteps = 3;
 	let selectedSkills = new Set();
 	let selectedRole = '';
-	let assessmentScore = 0;
+// Assessment removed
 
 	window.nextStep = function(){
 		if(step<totalSteps){
 			updateStep(step, step+1);
 			step++;
 			document.getElementById('currentStep').textContent = step;
-			document.getElementById('progressFill').style.width = (step*25)+'%';
+			document.getElementById('progressFill').style.width = (step*(100/totalSteps))+'%';
 		}
 	};
 	window.prevStep = function(){
@@ -20,7 +20,7 @@
 			updateStep(step, step-1);
 			step--;
 			document.getElementById('currentStep').textContent = step;
-			document.getElementById('progressFill').style.width = (step*25)+'%';
+			document.getElementById('progressFill').style.width = (step*(100/totalSteps))+'%';
 		}
 	};
 	function updateStep(from,to){
@@ -63,11 +63,11 @@
 		[...document.querySelectorAll('.career-card')].forEach(c=>c.classList.remove('selected'));
 		card.classList.add('selected');
 		selectedRole = card.getAttribute('data-role');
+		const btn = document.getElementById('careerNextBtn');
+		if(btn){ btn.disabled = !selectedRole; }
 	};
 
-	window.skipAssessment = function(){ assessmentScore = 0; };
-	window.prevQuestion = function(){};
-	window.nextQuestion = function(){ assessmentScore = 60; };
+// Removed assessment handlers
 
 	async function saveStepData(){
 		showLoading();
@@ -84,9 +84,7 @@
 				const daily_hours = pace==='casual'?1:pace==='moderate'?2:3;
 				await fetch('/api/onboarding/preferences',{method:'POST',headers:{'Content-Type':'application/json',...authHeader},body:JSON.stringify({learning_pace:pace, preferred_content:preferred, daily_hours})});
 			}
-			if(step===4){
-				await fetch('/api/onboarding/assessment',{method:'POST',headers:{'Content-Type':'application/json',...authHeader},body:JSON.stringify({score:assessmentScore})});
-			}
+			// Step 4 removed
 		}catch(e){
 			showToast('Failed to save step data','error');
 		}finally{ hideLoading(); }

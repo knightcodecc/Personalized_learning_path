@@ -434,6 +434,12 @@ def home_page():
 	from flask import render_template
 	return render_template('index.html')
 
+
+@app.get('/login')
+def login_page():
+	from flask import render_template
+	return render_template('login.html')
+
 @app.get('/learning-path')
 def learning_path_page():
 	from flask import render_template
